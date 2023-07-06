@@ -1,4 +1,4 @@
-export const PORT:number = process.env.PORT ? +process.env.PORT: 8000;
+export const PORT:number = process.env.PORT ? + process.env.PORT: 8000;
 export const NODE_ENV: string = process.env.NODE_ENV ? process.env.NODE_ENV: 'development';
 export const DB_NAME: string = process.env.DB_NAME ? process.env.DB_NAME: 'development'
 export const DB_USER: string = process.env.DB_USER ? process.env.DB_USER: 'root';
