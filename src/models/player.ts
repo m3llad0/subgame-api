@@ -21,7 +21,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
 
     Player.init({
         id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
         },
