@@ -17,7 +17,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
 
         static associate(models:any){
             Achievement.belongsToMany(models.Player, {
-                through: "PlayerAchievements"
+                through: "PlayerAchievement"
             });
         }
     }
