@@ -16,7 +16,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
         description!: string;
 
         static associate(models:any){
-            Achievement.belongsToMany(models.User, {
+            Achievement.belongsToMany(models.Player, {
                 through: "PlayerAchievements"
             });
         }
@@ -30,7 +30,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
             autoIncrement: true,
         },
         name: {
-            type: DataTypes.STRINGS,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         description:{
