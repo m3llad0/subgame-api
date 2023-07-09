@@ -1,6 +1,7 @@
 import Server from './providers/server';
 import express from 'express';
 import cors  from 'cors';
+import PlayerController from './controllers/userController';
 
 
 const app = new Server({
@@ -11,7 +12,7 @@ const app = new Server({
         express.urlencoded({extended: true}),
         cors()
     ],
-    controllers: [],
+    controllers: [PlayerController.getInstance(), ],
 });
 
 app.init();
