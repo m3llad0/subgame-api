@@ -2,7 +2,7 @@
 
 import { Model } from "sequelize"
 
-interface PlayerAchievementsAttributes{
+interface PlayerAchievementAttributes{
 
     playerId: number,
     achievementId: number
@@ -10,12 +10,12 @@ interface PlayerAchievementsAttributes{
 
 module.exports = (sequelize: any, DataTypes:any) => {
 
-    class PlayerAchievements extends Model<PlayerAchievementsAttributes> implements PlayerAchievementsAttributes{
+    class PlayerAchievement extends Model<PlayerAchievementAttributes> implements PlayerAchievementAttributes{
         playerId!: number
         achievementId!: number      
     }
 
-    PlayerAchievements.init({
+    PlayerAchievement.init({
         playerId: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -36,8 +36,8 @@ module.exports = (sequelize: any, DataTypes:any) => {
         }
     }, {
         sequelize,
-        modelName: "PlayerAchievements"
+        modelName: "PlayerAchievement"
     });
 
-    return PlayerAchievements;
+    return PlayerAchievement;
 };
