@@ -4,19 +4,19 @@ import { Model } from "sequelize"
 
 interface PlayerAchievementAttributes{
 
-    playerId: number,
-    achievementId: number
+    PlayerId: number,
+    AchievementId: number
 }
 
 module.exports = (sequelize: any, DataTypes:any) => {
 
     class PlayerAchievement extends Model<PlayerAchievementAttributes> implements PlayerAchievementAttributes{
-        playerId!: number
-        achievementId!: number      
+        PlayerId!: number
+        AchievementId!: number      
     }
 
     PlayerAchievement.init({
-        playerId: {
+        PlayerId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -25,10 +25,9 @@ module.exports = (sequelize: any, DataTypes:any) => {
                 key: "id"
             }
         },
-        achievementId: {
+        AchievementId: {
             type: DataTypes.INTEGER,
             allowNull: false, 
-            primaryKey: false, 
             references:{
                 model: "Achievement",
                 key: "id"
