@@ -1,7 +1,7 @@
-import { Request, Response, Router } from "express";
+import { Request, Response } from "express";
 import AbstractController from "./abstractController";
 import axios from "axios";
-const Player = require('../models/player');
+import db from "../models";
 
 class PlayerController extends AbstractController{
     protected validateBody(type: any) {
@@ -42,7 +42,7 @@ class PlayerController extends AbstractController{
             if (!user || !user.id || !user.username)
                 return response.status(401).send({message: "Invalid key"})
 
-            const player = Player.findOne({
+            const player = db.Player.findOne({
                 where: {
                     id: user.id
                 }
@@ -78,7 +78,7 @@ class PlayerController extends AbstractController{
                 return response.status(401).send({message: "Invalid key"})
             
             // Create a new player in database
-            const player = await Player.create({
+            const player = await db.Player.create({
                 id: user.id,
                 username: user.username
             });
