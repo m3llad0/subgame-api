@@ -100,7 +100,7 @@ class AchievementController extends AbstractController{
         }
     }
 
-    private async deleteAchievement(response: Response, request: Request){
+    private async deleteAchievement(request: Request, response: Response){
         /*Function to delete an achievement using id*/
 
         try{
@@ -120,7 +120,7 @@ class AchievementController extends AbstractController{
         }
     }
 
-    private async unlockAchievement(response: Response, request: Request){
+    private async unlockAchievement(request: Request, response: Response){
         try{
 
             const playerId = parseInt(request.params.playerid);
