@@ -24,6 +24,7 @@ class PlayerController extends AbstractController{
     protected initRoutes(): void{
         this.router.post('/createUser/:key', this.createUser.bind(this));
         this.router.get('/getUser/:key', this.getUser.bind(this));
+        this.router.get('/myAchievements/:id', this.myAchievements.bind(this))
     }
 
     private async getUser (request: Request, response: Response) {
@@ -88,6 +89,39 @@ class PlayerController extends AbstractController{
         }catch(err){
 
             return response.status(500).send({error: err})
+        }
+    }
+    private async myAchievements(request: Request, response: Response){
+        /*This function retrieves all the unlocked achievements of a user */
+        try{
+            const id = request.params.id;
+
+            const achievements = await db.Achievement.findAll();
+
+            const playerAchievements = await db.PlayerAchievement.findAll({
+                where: {
+                    PlayerId: id,
+                },
+                raw: true
+            });
+
+            const achievementMap = new Map<number, number>();
+
+            playerAchievements.forEach((playerAchievement: any) => {
+              const achievementId = playerAchievement.AchievementId;
+              achievementMap.set(achievementId, 1);
+            });
+      
+            const achievementList = achievements.map((achievement: any) => ({
+              id: achievement.id,
+              name: achievement.name,
+              description: achievement.description,
+              unlocked: achievementMap.has(achievement.id) ? 1 : 0,
+            }));
+
+            return response.status(200).send({achievements: achievementList});
+        }catch(err){
+            return response.status(500).send({error: err});
         }
     }
 }
