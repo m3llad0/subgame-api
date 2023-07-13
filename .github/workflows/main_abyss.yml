@@ -29,8 +29,8 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo PORT = $PORT >> .env
-          echo NODE_ENV = $NODE_ENV >> .env
+          echo PORT = ${{vars.PORT}} >> .env
+          echo NODE_ENV = ${{vars.NODE_ENV}} >> .env
           echo DB_NAME_PROD = ${{secrets.DB_NAME_PROD}} >> .env
           echo DB_USER_PROD = ${{secrets.DB_USER_PROD}} >> .env
           echo DB_PASSWORD_PROD = ${{secrets.DB_PASSWORD_PROD}} >> .env
