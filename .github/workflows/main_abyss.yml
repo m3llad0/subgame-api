@@ -23,11 +23,9 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+          echo ${{secrets.NODE_ENV}}
           npm install
           npm run build
-        
-      - name: check env variables
-          run: echo ${{secrets.NODE_ENV}}
                     
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
