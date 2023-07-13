@@ -10,12 +10,12 @@ on:
   workflow_dispatch:
 
 env:
-  PORT: ${{secret.PORT}}
-  NODE_ENV: ${{secret.NODE_ENV}}
-  DB_NAME_PROD: ${{secret.DB_NAME_PROD}}
-  DB_USER_PROD: ${{secret.DB_USER_PROD}}
-  DB_PASSWORD_PROD: ${{secret.DB_PASSWORD_PROD}}
-  DB_HOST_PROD: ${{secret.DB_HOST_PROD}}
+  PORT: ${{ secrets.PORT }}
+  NODE_ENV: ${{ secrets.NODE_ENV }}
+  DB_NAME_PROD: ${{ secrets.DB_NAME_PROD }}
+  DB_USER_PROD: ${{ secrets.DB_USER_PROD }}
+  DB_PASSWORD_PROD: ${{ secrets.DB_PASSWORD_PROD }}
+  DB_HOST_PROD: ${{ secrets.DB_HOST_PROD }}
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '18.15.0'
+          node-version: '14.x'
 
       - name: npm install, build, and test
         run: |
