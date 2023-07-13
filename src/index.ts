@@ -1,13 +1,13 @@
 import Server from './providers/server';
 import express from 'express';
 import cors  from 'cors';
-import { NODE_ENV } from './config';
+import { NODE_ENV, PORT } from './config';
 import PlayerController from './controllers/userController';
 import AchievementController from './controllers/achievementController';
 
 
 const app = new Server({
-    port: 8080,
+    port: PORT,
     env: NODE_ENV,
     middlewares: [
         express.json(),
