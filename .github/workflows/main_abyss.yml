@@ -26,21 +26,20 @@ jobs:
           npm install
           npm run build
 
-      - name: create env file
-        run: |
-          touch .env
-          echo PORT = ${{secrets.PORT}} >> .env
-          echo NODE_ENV = ${{secrets.NODE_ENV}} >> .env
-          echo DB_NAME_PROD = ${{secrets.DB_NAME_PROD}} >> .env
-          echo DB_USER_PROD = ${{secrets.DB_USER_PROD}} >> .env
-          echo DB_PASSWORD_PROD = ${{secrets.DB_PASSWORD_PROD}} >> .env
-          echo DB_HOST_PROD = ${{secrets.DB_HOST_PROD}} >> .env
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
           path: .
+        env:
+          PORT: ${{secrets.PORT}}
+          NODE_ENV: ${{secrets.NODE_ENV}}
+          DB_NAME_PROD: ${{secrets.DB_NAME_PROD}}
+          DB_USER_PROD: ${{secrets.DB_USER_PROD}}
+          DB_PASSWORD_PROD: ${{secrets.DB_PASSWORD_PROD}}
+          DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
+          
 
   deploy:
     runs-on: ubuntu-latest
