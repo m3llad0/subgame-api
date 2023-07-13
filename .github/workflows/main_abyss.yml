@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '18.15.0'
 
       - name: npm install, build, and test
         run: |
@@ -50,14 +50,14 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          env:
-            PORT: ${{ secrets.PORT }}
-            NODE_ENV: ${{ secrets.NODE_ENV }}
-            DB_NAME_PROD: ${{ secrets.DB_NAME_PROD }}
-            DB_USER_PROD: ${{ secrets.DB_USER_PROD }}
-            DB_PASSWORD_PROD: ${{ secrets.DB_PASSWORD_PROD }}
-            DB_HOST_PROD: ${{ secrets.DB_HOST_PROD }}
           app-name: 'abyss'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B69F8012E9BC41089C71C6A9DFB4E70F }}
           package: .
+          env:
+            PORT: ${{secrets.PORT}}
+            NODE_ENV: ${{secrets.NODE_ENV}}
+            DB_NAME_PROD: ${{secrets.DB_NAME_PROD}}
+            DB_USER_PROD: ${{secrets.DB_USER_PROD}}
+            DB_PASSWORD_PROD: ${{secrets.DB_PASSWORD_PROD}}
+            DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
