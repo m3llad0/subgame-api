@@ -28,7 +28,7 @@ jobs:
         
 
       - name: check env variables
-          run: |
+          run: 
           echo ${{secrets.PORT}}
           echo ${{secrets.NODE_ENV}}
           echo ${{secrets.DB_NAME_PROD}}
