@@ -26,15 +26,8 @@ jobs:
           npm install
           npm run build
         
-
       - name: check env variables
-          run: 
-          echo ${{secrets.PORT}}
-          echo ${{secrets.NODE_ENV}}
-          echo ${{secrets.DB_NAME_PROD}}
-          echo ${{secrets.DB_USER_PROD}}
-          echo ${{secrets.DB_PASSWORD_PROD}}
-          echo ${{secrets.DB_HOST_PROD}}
+          run: echo ${{secrets.NODE_ENV}}
                     
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
