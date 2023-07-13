@@ -25,12 +25,7 @@ jobs:
         run: |
           npm install
           npm run build
-
-      - name: check variables
-        run: |
-
-          echo "$PORT"         
-                    
+                           
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
