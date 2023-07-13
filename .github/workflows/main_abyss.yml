@@ -25,18 +25,7 @@ jobs:
         run: |
           npm install
           npm run build
-          
-      - name: create env file
-        run: |
-          echo ${{secrets.PORT}} > .env
-          echo ${{secrets.NODE_ENV}} > .env
-          echo ${{secrets.DB_NAME_PROD}} > .env
-          echo ${{secrets.DB_USER_PROD}} > .env
-          echo ${{secrets.DB_PASSWORD_PROD}} > .env
-          echo ${{secrets.DB_HOST_PROD}} > .env
-
-
-          
+                    
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -59,6 +48,13 @@ jobs:
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
+        env:
+          PORT : ${{secrets.PORT}}
+          NODE_ENV : ${{secrets.NODE_ENV}}
+          DB_NAME_PROD : ${{secrets.DB_NAME_PROD}}
+          DB_USER_PROD : ${{secrets.DB_USER_PROD}}
+          DB_PASSWORD_PROD : ${{secrets.DB_PASSWORD_PROD}}
+          DB_HOST_PROD : ${{secrets.DB_HOST_PROD}}
         with:
           app-name: 'abyss'
           slot-name: 'Production'
