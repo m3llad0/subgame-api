@@ -35,12 +35,12 @@ else if(env == 'test'){
                                     freezeTableName: true
                                 }
                             });
-}else if(env == 'product'){
-  sequelize = new Sequelize(config.test.database, 
-                            config.test.username, 
-                            config.test.password, {
-                                dialect: config.test.dialect,
-                                host: config.test.host,
+}else if(env == 'production'){
+  sequelize = new Sequelize(config.production.database, 
+                            config.production.username, 
+                            config.production.password, {
+                                dialect: config.production.dialect,
+                                host: config.production.host,
                                 define: {
                                     timestamps: false, //if true add two attributes to table
                                     freezeTableName: true

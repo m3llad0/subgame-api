@@ -6,7 +6,11 @@ import {
   DB_NAME_TEST,
   DB_USER_TEST,
   DB_PASSWORD_TEST,
-  DB_HOST_TEST } from ".";
+  DB_HOST_TEST,
+  DB_NAME_PROD,
+  DB_USER_PROD,
+  DB_HOST_PROD,
+  DB_PASSWORD_PROD } from ".";
 export default {
   "development": {
     "username": DB_USER,
@@ -23,10 +27,10 @@ export default {
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": DB_USER_PROD,
+    "password": DB_PASSWORD_PROD,
+    "database": DB_NAME_PROD,
+    "host": DB_HOST_PROD,
     "dialect": "mysql"
   }
 }

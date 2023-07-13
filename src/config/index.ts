@@ -8,3 +8,7 @@ export const DB_NAME_TEST: string = process.env.DB_NAME ? process.env.DB_NAME: '
 export const DB_USER_TEST: string = process.env.DB_USER ? process.env.DB_USER: 'root';
 export const DB_PASSWORD_TEST: string = process.env.DB_PASSWORD ? process.env.DB_PASSWORD: 'password';
 export const DB_HOST_TEST: string = process.env.DB_HOST ? process.env.DB_HOST: 'localhost';
+export const DB_NAME_PROD: string = process.env.DB_NAME_PROD ? process.env.DB_NAME_PROD: 'production';
+export const DB_USER_PROD: string = process.env.DB_USER_PROD ? process.env.DB_USER_PROD: 'root';
+export const DB_PASSWORD_PROD: string = process.env.DB_PASSWORD_PROD ? process.env.DB_PASSWORD_PROD : 'password';
+export const DB_HOST_PROD: string = process.env.DB_HOST_PROD ? process.env.DB_HOST_PROD : 'localhost';
