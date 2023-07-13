@@ -11,6 +11,14 @@ import {
   DB_USER_PROD,
   DB_HOST_PROD,
   DB_PASSWORD_PROD } from ".";
+
+
+  console.log(
+    DB_HOST_PROD,
+    DB_NAME_PROD,
+    DB_PASSWORD_PROD,
+    DB_USER_PROD
+  )
 export default {
   "development": {
     "username": DB_USER,
