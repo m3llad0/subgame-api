@@ -32,13 +32,6 @@ jobs:
         with:
           name: node-app
           path: .
-        env:
-          PORT: ${{secrets.PORT}}
-          NODE_ENV: ${{secrets.NODE_ENV}}
-          DB_NAME_PROD: ${{secrets.DB_NAME_PROD}}
-          DB_USER_PROD: ${{secrets.DB_USER_PROD}}
-          DB_PASSWORD_PROD: ${{secrets.DB_PASSWORD_PROD}}
-          DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
           
 
   deploy:
