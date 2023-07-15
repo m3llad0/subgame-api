@@ -24,7 +24,7 @@ class PlayerController extends AbstractController{
     protected initRoutes(): void{
         this.router.post('/createUser/:key', this.createUser.bind(this));
         this.router.get('/getUser/:key', this.getUser.bind(this));
-        this.router.get('/myAchievements/:id', this.myAchievements.bind(this))
+        this.router.get('/myAchievements/:key', this.myAchievements.bind(this))
     }
 
     private async getUser (request: Request, response: Response) {
@@ -94,13 +94,21 @@ class PlayerController extends AbstractController{
     private async myAchievements(request: Request, response: Response){
         /*This function retrieves all the unlocked achievements of a user */
         try{
-            const id = request.params.id;
+            const key = request.params.key;
+
+            const APIresponse = await axios.get(`https://itch.io/api/1/${key}/me`)
+
+            const {user} = APIresponse.data
+            
+            // Check if the response is valid
+            if (!user || !user.id || !user.username)
+                return response.status(401).send({message: "Invalid key"})
 
             const achievements = await db.Achievement.findAll();
 
             const playerAchievements = await db.PlayerAchievement.findAll({
                 where: {
-                    PlayerId: id,
+                    PlayerId: user.id,
                 },
                 raw: true
             });
