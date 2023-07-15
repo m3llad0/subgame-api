@@ -43,7 +43,7 @@ class PlayerController extends AbstractController{
             if (!user || !user.id || !user.username)
                 return response.status(401).send({message: "Invalid key"})
 
-            const player = db.Player.findOne({
+            const player = await db.Player.findOne({
                 where: {
                     id: user.id
                 }
