@@ -24,7 +24,7 @@ class AchievementController extends AbstractController{
         this.router.get('/getAchievements', this.getAllAchievements.bind(this));
         this.router.put('/updateAchievement/:id', this.editAchievement.bind(this));
         this.router.delete('deleteAchievement/:id', this.deleteAchievement.bind(this));
-        this.router.put('/unlockAchievement/:achievementid/player/:playerid', this.unlockAchievement.bind(this));
+        this.router.put('/unlockAchievement/:achievementid/player/:key', this.unlockAchievement.bind(this));
 
     }
     protected validateBody(type: any) {
@@ -123,17 +123,25 @@ class AchievementController extends AbstractController{
     private async unlockAchievement(request: Request, response: Response){
         try{
 
-            const playerId = parseInt(request.params.playerid);
+            const key = request.params.key;
             const achievementId = parseInt(request.params.achievementid);
 
+            const APIresponse = await axios.get(`https://itch.io/api/1/${key}/me`);
+
+            const { user } = APIresponse.data;
+
+            if(!user || !user.id || !user.username)
+                return response.status(401).send({message: "Invalid key"});
+
+
             const achievement = await db.Achievement.findByPk(achievementId);
-            const player = await db.Player.findByPk(playerId);
+            const player = await db.Player.findByPk(user.id);
 
             if (!player || !achievement)
                 return response.status(404).send({message: "Content not found"});
 
             await db.PlayerAchievement.create({
-                PlayerId: playerId,
+                PlayerId: user.id,
                 AchievementId: achievementId
             });
 
