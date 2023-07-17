@@ -1,6 +1,6 @@
 {
   "name": "subgame-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "api for subgame in csf game jam",
   "main": "index.js",
   "scripts": {
